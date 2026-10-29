@@ -1,0 +1,27 @@
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Probabilidades Previas (Priors)
+        double pC = 0.05; // P(C) - Caída
+        double pN = 0.95; // P(N) - Normal
+
+        // 2. Verosimilitud (Likelihood)
+        double pP_given_C = 0.90; // P(P | C) - Pico de CPU dado Caída
+        double pP_given_N = 0.15; // P(P | N) - Pico de CPU dado Normal
+
+        // Paso 1: Calcular la Evidencia Total P(P) - Probabilidad de Pico de CPU
+        double pP = (pP_given_C * pC) + (pP_given_N * pN);
+
+        // Paso 2: Calcular la Probabilidad A Posteriori P(C | P) - Teorema de Bayes
+        double pC_given_P = (pP_given_C * pC) / pP;
+
+        // Mostrar resultados
+        Console.WriteLine($"Paso 1: Evidencia Total P(P) = {pP:F4}");
+        Console.WriteLine($"Paso 2: Probabilidad A Posteriori P(C | P) = {pC_given_P:F4} ({pC_given_P * 100:F0}%)");
+    }
+}
+
