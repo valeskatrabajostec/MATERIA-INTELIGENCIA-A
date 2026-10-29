@@ -1,0 +1,27 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Probabilidad de elegir cada urna (1/3 para cada una)
+        double pA = 1.0 / 3.0;
+        double pB = 1.0 / 3.0;
+        double pC = 1.0 / 3.0;
+
+        // 2. Probabilidad de sacar bola roja dado la urna
+        double pR_given_A = 3.0 / 8.0; // 3 rojas de 8 totales
+        double pR_given_B = 2.0 / 3.0; // 2 rojas de 3 totales
+        double pR_given_C = 2.0 / 5.0; // 2 rojas de 5 totales
+
+        // 3. Probabilidad total de sacar bola roja P(R)
+        double pR = (pA * pR_given_A) + (pB * pR_given_B) + (pC * pR_given_C);
+
+        // 4. Teorema de Bayes para calcular P(A / R)
+        double pA_given_R = (pA * pR_given_A) / pR;
+
+        // Mostrar resultados
+        Console.WriteLine($"Probabilidad total de sacar bola roja P(R): {pR:F4}");
+        Console.WriteLine($"P(A / R) = {pA_given_R:F4}");
+    }
+}
