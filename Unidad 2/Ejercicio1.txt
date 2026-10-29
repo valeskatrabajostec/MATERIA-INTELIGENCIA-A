@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Declarar las probabilidades de las máquinas (Prior)
+        double pA = 0.45;
+        double pB = 0.30;
+        double pC = 0.25;
+
+        // 2. Declarar las probabilidades condicionales (Defectuosa dado la máquina)
+        double pD_given_A = 0.03;
+        double pD_given_B = 0.04;
+        double pD_given_C = 0.05;
+
+        // a. Probabilidad total de que sea defectuosa P(D)
+        double pD = (pA * pD_given_A) + (pB * pD_given_B) + (pC * pD_given_C);
+        Console.WriteLine($"a. Probabilidad de pieza defectuosa P(D): {pD:F4}");
+
+        // b. Probabilidad de B dado que es defectuosa P(B/D) (Teorema de Bayes)
+        double pB_given_D = (pB * pD_given_B) / pD;
+        Console.WriteLine($"b. P(B / D) = {pB_given_D:F4}");
+
+        // c. Probabilidades A/D y C/D para comparar
+        double pA_given_D = (pA * pD_given_A) / pD;
+        double pC_given_D = (pC * pD_given_C) / pD;
+        Console.WriteLine($"c. P(A / D) = {pA_given_D:F4}");
+        Console.WriteLine($"   P(C / D) = {pC_given_D:F4}");
+    }
+}
